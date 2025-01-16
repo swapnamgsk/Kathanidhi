@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "id": "1737017381246",
+      "name": "Swapna",
+      "email": "swapnagovindayya@gmail.com",
+      "password": "Swapna@123"
+    }
+  ],
+  "stories": [
+    {
+      "id": "1737017988417",
+      "title": "Proverb",
+      "content": "This timeless saying teaches the principle of cause and effect, reminding us that our actions—whether good or bad—determine the outcomes we experience. It encourages mindful living and personal responsibility.\n\n",
+      "category": "proverbs",
+      "createdAt": "2025-01-16T08:59:48.417Z",
+      "author": {
+        "id": "1737017381246",
+        "name": "Swapna",
+        "avatar": ""
+      }
+    },
+    {
+      "id": "1737017864520",
+      "title": "Shiva and the Poison of the Universe",
+      "content": "Once, long ago, the gods and demons united for an extraordinary task—the churning of the cosmic ocean, known as the Samudra Manthan. They sought the nectar of immortality, but the process unleashed far more than they bargained for. Among the treasures and wonders emerged a deadly poison, Halahala, so potent that its mere presence darkened the heavens and scorched the earth.\n\nThe gods panicked as the poison spread, threatening to consume all creation. They turned to Lord Shiva, the benevolent destroyer, seeking his help. Calm and meditative as always, Shiva opened his eyes and understood the peril. Without hesitation, he resolved to save the universe.\n\nShiva strode to the edge of the churning ocean. “I will consume the poison,” he declared, his voice steady. The gods and demons watched in awe and fear, knowing the risk. If the poison overwhelmed even the mighty Shiva, it could spell doom for all.\n\nShiva cupped his hands and scooped the searing Halahala into his mouth. The venom burned fiercely, its potency unmatched. Parvati, his divine consort, saw her lord’s throat darken with the poison’s power and quickly wrapped her hands around his neck, stopping it from spreading further. Her act of love and protection contained the poison in Shiva’s throat, sparing him and the universe.\n\nFrom that day, Shiva was known as Neelkanth, the Blue-Throated One. The gods bowed in gratitude, and Parvati stood by him, her devotion unshaken. Despite bearing the poison’s burden, Shiva resumed his meditations, undisturbed and serene, showing the world the true essence of selflessness and balance.\n\nShiva’s act of consuming the poison was not just a demonstration of his strength but a lesson in sacrifice, compassion, and the ability to absorb negativity to protect the greater good. To this day, his blue throat is a symbol of resilience, and his story reminds us to rise above challenges with unwavering courage and love.\n\n",
+      "category": "one-page",
+      "createdAt": "2025-01-16T08:57:44.520Z",
+      "author": {
+        "id": "1737017381246",
+        "name": "Swapna",
+        "avatar": ""
+      }
+    },
+    {
+      "id": "1737017447524",
+      "title": "Radha and Krishna: The Eternal Melody",
+      "content": "In the tranquil village of Vrindavan, where the Yamuna River meandered through dense forests, the air was always filled with the sweet melody of Krishna’s flute. Each note seemed to whisper tales of divine love, drawing every heart towards him. Among those enchanted by his music, Radha’s was the most radiant. She wasn’t merely a devotee; she was the very soul of his song.\n\nOne evening, as the orange hues of sunset kissed the sky, Krishna sat beneath a Kadamba tree, his flute resting on his lap. Radha approached, her anklets tinkling softly, her presence as soothing as moonlight. Krishna smiled, his eyes meeting hers. They spoke no words, for their hearts understood a language beyond the reach of speech.\n\n“Why do you play the flute so often?” Radha asked teasingly, breaking the silence. “Is it to charm the Gopis, or do you hope the peacocks will dance for you again?”\n\nKrishna chuckled. “Neither, Radha. I play because my heart is full, and the melody is incomplete without you. Each note seeks you, just as the river seeks the ocean.”\n\nRadha tilted her head, pretending to consider. “And what of my heart, Kanha? What do I seek?”\n\n“You seek the reflection of your own soul,” Krishna replied, his voice as gentle as the evening breeze. “And that reflection is me, just as I see myself in you.”\n\nThe forest seemed to hold its breath, as if nature itself wished to hear their exchange. Flowers bloomed brighter, and the Yamuna shimmered in the fading light. Time stood still as Radha and Krishna shared a moment of perfect union, unbound by worldly constraints.\n\n“Why then,” Radha asked, her voice tinged with sadness, “must we part, knowing our souls are one?”\n\nKrishna gazed at her, his eyes filled with infinite compassion. “Our love is beyond the limits of this world, Radha. It isn’t confined to presence or absence. Even when I am far, I am within you, just as you are within me. Our bond is eternal, unbroken by time or distance.”\n\nRadha smiled, though her eyes glistened with unshed tears. She understood. Their love was not for possession but for transcendence—a love that uplifted the world.\n\nAs darkness fell, Krishna picked up his flute and played a tune so poignant that even the stars paused to listen. Radha closed her eyes, feeling every note, every whisper of their shared essence. And though their paths would diverge, their love would forever sing through the universe, an eternal melody.",
+      "category": "one-page",
+      "createdAt": "2025-01-16T08:50:47.524Z",
+      "author": {
+        "id": "1737017381246",
+        "name": "Swapna",
+        "avatar": ""
+      }
+    }
+  ]
+}

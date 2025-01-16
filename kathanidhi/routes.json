@@ -1,0 +1,5 @@
+{
+  "/auth/*": "/$1",
+  "/auth/register": "/register",
+  "/auth/login": "/login"
+}
