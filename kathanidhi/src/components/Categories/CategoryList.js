@@ -2,61 +2,163 @@ import React from 'react';
 import { Grid, Container, Typography } from '@mui/material';
 import CategoryCard from './CategoryCard';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
-import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-import QuizIcon from '@mui/icons-material/Quiz';
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-import EmojiSymbolsIcon from '@mui/icons-material/EmojiSymbols';
+import TheatersIcon from '@mui/icons-material/Theaters';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
+import ChildCareIcon from '@mui/icons-material/ChildCare';
+import ImageIcon from '@mui/icons-material/Image';
+import QuizIcon from '@mui/icons-material/Quiz';
+import AbcIcon from '@mui/icons-material/Abc';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import PublicIcon from '@mui/icons-material/Public';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
 
 const CategoryList = () => {
   const categories = [
     {
-      id: 1,
-      title: 'One-Page Stories',
-      description: 'Short and impactful stories that can be read in one sitting',
+      id: 'telugu-folk-tales',
+      title: 'తెలుగు జానపద కథలు',
+      description: 'Traditional Telugu folk tales and stories',
       icon: <AutoStoriesIcon sx={{ fontSize: 40 }} />,
-      path: '/categories/one-page',
+      path: '/categories/telugu-folk-tales',
       color: '#1976d2'
     },
     {
-      id: 2,
-      title: 'Proverbs',
-      description: 'Traditional Telugu proverbs with their meanings and usage',
-      icon: <FormatQuoteIcon sx={{ fontSize: 40 }} />,
-      path: '/categories/proverbs',
-      color: '#2e7d32'
-    },
-    {
-      id: 3,
-      title: 'Riddles',
-      description: 'Fun and challenging Telugu riddles for all ages',
-      icon: <QuizIcon sx={{ fontSize: 40 }} />,
-      path: '/categories/riddles',
-      color: '#ed6c02'
-    },
-    {
-      id: 4,
-      title: 'Wise Sayings',
-      description: 'Ancient Telugu wisdom and philosophical quotes',
-      icon: <LightbulbIcon sx={{ fontSize: 40 }} />,
-      path: '/categories/wise-sayings',
+      id: 'harikatha',
+      title: 'హరికిషన్ కథలు',
+      description: 'Stories of Harikatha tradition',
+      icon: <MenuBookIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/harikatha',
       color: '#9c27b0'
     },
     {
-      id: 5,
-      title: 'Multi-Page Stories',
-      description: 'Longer stories divided into chapters',
-      icon: <MenuBookIcon sx={{ fontSize: 40 }} />,
-      path: '/categories/multi-page',
+      id: 'telugu-humor',
+      title: 'తెలుగు హాస్య కథలు',
+      description: 'Humorous Telugu stories',
+      icon: <EmojiEmotionsIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/telugu-humor',
+      color: '#ed6c02'
+    },
+    {
+      id: 'world-folk-tales',
+      title: 'ప్రపంచ జానపద కథలు',
+      description: 'Folk tales from around the world',
+      icon: <PublicIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/world-folk-tales',
+      color: '#2e7d32'
+    },
+    {
+      id: 'childrens-humor',
+      title: 'బాలల హాస్య కథలు',
+      description: "Children's humorous stories",
+      icon: <ChildCareIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/childrens-humor',
       color: '#d32f2f'
     },
     {
-      id: 6,
-      title: 'Poetry',
-      description: 'Modern and classical Telugu poetry collection',
-      icon: <EmojiSymbolsIcon sx={{ fontSize: 40 }} />,
-      path: '/categories/poetry',
+      id: 'moral-stories',
+      title: 'బాలల నీతి కథలు',
+      description: 'Moral stories for children',
+      icon: <MenuBookIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/moral-stories',
       color: '#0288d1'
+    },
+    {
+      id: 'proverbs-with-pictures',
+      title: 'బొమ్మలతో సామెతలు',
+      description: 'Proverbs with illustrations',
+      icon: <ImageIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/proverbs-with-pictures',
+      color: '#7b1fa2'
+    },
+    {
+      id: 'riddles-with-pictures',
+      title: 'బొమ్మలతో పొడుపు కథలు',
+      description: 'Riddles with illustrations',
+      icon: <QuizIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/riddles-with-pictures',
+      color: '#c2185b'
+    },
+    {
+      id: 'stories-without-ottulu',
+      title: 'ఒత్తులు లేని కథలు',
+      description: 'Stories without combined letters',
+      icon: <AbcIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/stories-without-ottulu',
+      color: '#00796b'
+    },
+    {
+      id: 'stories-without-samyukta',
+      title: 'సంయుక్త అక్షరాలు లేని కథలు',
+      description: 'Stories without compound letters',
+      icon: <AbcIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/stories-without-samyukta',
+      color: '#607d8b'
+    },
+    {
+      id: 'songs-without-ottulu',
+      title: 'ఒత్తులు లేని గేయాలు',
+      description: 'Songs without combined letters',
+      icon: <MusicNoteIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/songs-without-ottulu',
+      color: '#ff5722'
+    },
+    {
+      id: 'songs-without-samyukta',
+      title: 'సంయుక్త అక్షరాలు లేని గేయాలు',
+      description: 'Songs without compound letters',
+      icon: <MusicNoteIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/songs-without-samyukta',
+      color: '#795548'
+    },
+    {
+      id: 'short-stories',
+      title: 'చిట్టి కథలు',
+      description: 'Very short stories',
+      icon: <AutoStoriesIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/short-stories',
+      color: '#673ab7'
+    },
+    {
+      id: 'childrens-songs',
+      title: 'చిన్నారి గేయాలు',
+      description: "Children's songs",
+      icon: <MusicNoteIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/childrens-songs',
+      color: '#009688'
+    },
+    {
+      id: 'folk-humor-songs',
+      title: 'జానపద హాస్య గేయాలు',
+      description: 'Folk humor songs',
+      icon: <MusicNoteIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/folk-humor-songs',
+      color: '#ff9800'
+    },
+    {
+      id: 'audio-stories',
+      title: 'కథలు విందాం',
+      description: 'Audio stories and songs',
+      icon: <HeadphonesIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/audio-stories',
+      color: '#e91e63'
+    },
+    {
+      id: 'video-stories',
+      title: 'కథలు చూద్దాం',
+      description: 'Video stories',
+      icon: <TheatersIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/video-stories',
+      color: '#f44336'
+    },
+    {
+      id: 'rayalaseema-stories',
+      title: 'రాయలసీమ కథలు',
+      description: 'Stories from Rayalaseema',
+      icon: <LocationCityIcon sx={{ fontSize: 40 }} />,
+      path: '/categories/rayalaseema-stories',
+      color: '#3f51b5'
     }
   ];
 
@@ -68,7 +170,7 @@ const CategoryList = () => {
         gutterBottom
         sx={{ mb: 4, textAlign: 'center' }}
       >
-        Explore Categories
+        కథల వర్గాలు
       </Typography>
       <Grid container spacing={3}>
         {categories.map((category) => (

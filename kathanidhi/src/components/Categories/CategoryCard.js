@@ -10,6 +10,9 @@ import { useNavigate } from 'react-router-dom';
 
 const CategoryCard = ({ category }) => {
   const navigate = useNavigate();
+  
+  // Extract the category ID from the path
+  const categoryId = category.path.split('/').pop();
 
   return (
     <Card 
@@ -22,7 +25,7 @@ const CategoryCard = ({ category }) => {
       }}
     >
       <CardActionArea 
-        onClick={() => navigate(category.path)}
+        onClick={() => navigate(`/categories/${categoryId}`)}
         sx={{ height: '100%' }}
       >
         <CardContent>

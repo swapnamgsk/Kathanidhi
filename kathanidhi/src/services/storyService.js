@@ -28,9 +28,9 @@ class StoryService {
     }
   }
 
-  async updateStory(id, storyData) {
+  async updateStory(id, updates) {
     try {
-      const response = await api.put(`/stories/${id}`, storyData);
+      const response = await api.put(`/stories/${id}`, updates);
       return response.data;
     } catch (error) {
       throw this.handleError(error);
@@ -39,16 +39,17 @@ class StoryService {
 
   async deleteStory(id) {
     try {
-      await api.delete(`/stories/${id}`);
-      return true;
+      const response = await api.delete(`/stories/${id}`);
+      return response.status === 200 || response.status === 204;
     } catch (error) {
+      console.error('Delete story error:', error);
       throw this.handleError(error);
     }
   }
 
   async likeStory(id) {
     try {
-      const response = await api.post(`/stories/${id}/like`);
+      const response = await api.put(`/stories/${id}/like`);
       return response.data;
     } catch (error) {
       throw this.handleError(error);
@@ -121,12 +122,13 @@ class StoryService {
   }
 
   handleError(error) {
+    console.error('API Error:', error);
     if (error.response) {
-      throw new Error(error.response.data.message || 'An error occurred');
+      throw new Error(error.response.data?.message || 'An error occurred');
     } else if (error.request) {
-      throw new Error('No response from server');
+      throw new Error('Network error - please check your connection');
     } else {
-      throw new Error(error.message || 'An error occurred');
+      throw new Error('An unexpected error occurred');
     }
   }
 }

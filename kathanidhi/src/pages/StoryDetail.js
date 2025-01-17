@@ -25,70 +25,62 @@ const StoryDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { stories, loading, error, deleteStory, likeStory } = useStories();
-  const [story, setStory] = useState(null);
+  const { stories, deleteStory, likeStory, editStory, shareStory } = useStories();
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const currentStory = stories.find(s => s.id === id);
-    setStory(currentStory);
-  }, [id, stories]);
-
-  const handleDelete = async () => {
-    if (window.confirm('Are you sure you want to delete this story?')) {
-      try {
-        await deleteStory(id);
-        navigate('/stories');
-      } catch (err) {
-        console.error('Failed to delete story:', err);
-      }
-    }
-  };
+  const story = stories.find(s => s.id === id);
 
   const handleLike = async () => {
     try {
+      setError(null);
       await likeStory(id);
-    } catch (err) {
-      console.error('Failed to like story:', err);
+    } catch (error) {
+      console.error('Failed to like story:', error);
+      setError('Failed to like story');
     }
   };
 
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: story.title,
-        text: story.excerpt,
-        url: window.location.href,
-      });
+  const handleShare = async () => {
+    try {
+      setError(null);
+      await shareStory(id);
+    } catch (error) {
+      console.error('Failed to share story:', error);
+      setError('Failed to share story');
     }
   };
 
-  if (loading) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
-        <CircularProgress />
-      </Box>
-    );
-  }
+  const handleEdit = () => {
+    navigate(`/edit-story/${id}`);
+  };
 
-  if (error) {
-    return (
-      <Container sx={{ py: 4 }}>
-        <Alert severity="error">{error}</Alert>
-      </Container>
-    );
-  }
+  const handleDelete = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      await deleteStory(id);
+      navigate('/stories');
+    } catch (error) {
+      console.error('Failed to delete story:', error);
+      setError('Failed to delete story');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!story) {
-    return (
-      <Container sx={{ py: 4 }}>
-        <Alert severity="error">Story not found</Alert>
-      </Container>
-    );
+    return <Typography>Story not found</Typography>;
   }
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Paper elevation={3} sx={{ p: 4 }}>
+    <Container maxWidth="lg" sx={{ py: 4 }}>
+      {error && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {error}
+        </Alert>
+      )}
+      <Paper elevation={3} sx={{ p: 3 }}>
         {/* Author and Actions */}
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -153,21 +145,37 @@ const StoryDetail = () => {
         <Divider sx={{ my: 3 }} />
 
         {/* Actions */}
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Box>
-            <IconButton onClick={handleLike} color={story.isLiked ? "error" : "default"}>
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton onClick={handleShare}>
-              <ShareIcon />
-            </IconButton>
-          </Box>
-          <Button
-            variant="outlined"
-            onClick={() => navigate('/stories')}
+        <Box sx={{ mt: 2, display: 'flex', gap: 1 }}>
+          <IconButton 
+            onClick={handleLike} 
+            color={story.isLiked ? "error" : "default"}
+            disabled={loading}
           >
-            Back to Stories
-          </Button>
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton 
+            onClick={handleShare}
+            disabled={loading}
+          >
+            <ShareIcon />
+          </IconButton>
+          {user && user.id === story.author.id && (
+            <>
+              <IconButton 
+                onClick={handleEdit}
+                disabled={loading}
+              >
+                <EditIcon />
+              </IconButton>
+              <IconButton 
+                onClick={handleDelete}
+                disabled={loading}
+                color="error"
+              >
+                <DeleteIcon />
+              </IconButton>
+            </>
+          )}
         </Box>
       </Paper>
     </Container>

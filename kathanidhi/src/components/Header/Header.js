@@ -44,13 +44,13 @@ const Header = () => {
   };
 
   const menuItems = [
-    { label: 'Stories', path: '/stories' },
-    { label: 'Categories', path: '/categories' },
-    { label: 'Chatbot', path: '/chatbot' },
+    { label: 'కథలు', path: '/stories' },
+    { label: 'వర్గాలు', path: '/categories' },
+    { label: 'చాట్‌బాట్', path: '/chatbot' },
   ];
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ bgcolor: '#1b5e20' }}>
       <Toolbar>
         <Typography 
           variant="h6" 
@@ -58,11 +58,15 @@ const Header = () => {
           to="/" 
           sx={{ 
             flexGrow: 1, 
-            textDecoration: 'none', 
-            color: 'white' 
+            textDecoration: 'none',
+            fontWeight: 'bold', 
+            color: 'white',
+            '&:hover': {
+              color: '#81c784'
+            }
           }}
         >
-         KathaNidhi 
+         కథానిధి
         </Typography>
 
         {isMobile ? (
@@ -91,22 +95,22 @@ const Header = () => {
               {user ? (
                 [
                   <MenuItem key="create" component={Link} to="/create" onClick={handleClose}>
-                    Write Story
+                    కథ వ్రాయండి
                   </MenuItem>,
                   <MenuItem key="profile" component={Link} to="/profile" onClick={handleClose}>
-                    Profile
+                    ప్రొఫైల్
                   </MenuItem>,
                   <MenuItem key="logout" onClick={handleLogout}>
-                    Logout
+                    లాగ్ అవుట్
                   </MenuItem>
                 ]
               ) : (
                 [
                   <MenuItem key="login" component={Link} to="/login" onClick={handleClose}>
-                    Login
+                    లాగిన్
                   </MenuItem>,
                   <MenuItem key="register" component={Link} to="/register" onClick={handleClose}>
-                    Register
+                    రిజిస్టర్
                   </MenuItem>
                 ]
               )}
@@ -127,7 +131,7 @@ const Header = () => {
             {user ? (
               <>
                 <Button color="inherit" component={Link} to="/create">
-                  Write Story
+                  కథ వ్రాయండి
                 </Button>
                 <IconButton
                   color="inherit"
@@ -141,20 +145,20 @@ const Header = () => {
                   onClose={handleClose}
                 >
                   <MenuItem component={Link} to="/profile" onClick={handleClose}>
-                    Profile
+                    ప్రొఫైల్
                   </MenuItem>
                   <MenuItem onClick={handleLogout}>
-                    Logout
+                    లాగ్ అవుట్
                   </MenuItem>
                 </Menu>
               </>
             ) : (
               <>
                 <Button color="inherit" component={Link} to="/login">
-                  Login
+                  లాగిన్
                 </Button>
                 <Button color="inherit" component={Link} to="/register">
-                  Register
+                  రిజిస్టర్
                 </Button>
               </>
             )}

@@ -205,6 +205,72 @@ app.get('/test', (req, res) => {
   res.json({ message: 'Server is running!' });
 });
 
+// Add DELETE endpoint
+app.delete('/stories/:id', (req, res) => {
+  try {
+    const storyId = req.params.id;
+    const db = readDB();
+    
+    // Find story index
+    const storyIndex = db.stories.findIndex(story => story.id === storyId);
+    
+    if (storyIndex === -1) {
+      return res.status(404).json({ message: 'Story not found' });
+    }
+    
+    // Remove the story
+    db.stories.splice(storyIndex, 1);
+    
+    // Write updated data back to file
+    writeDB(db);
+    
+    res.status(200).json({ message: 'Story deleted successfully' });
+  } catch (error) {
+    console.error('Delete error:', error);
+    res.status(500).json({ message: 'Error deleting story' });
+  }
+});
+
+// Add endpoints for like, edit, and share
+app.put('/stories/:id/like', (req, res) => {
+  try {
+    const storyId = req.params.id;
+    const db = readDB();
+    const story = db.stories.find(s => s.id === storyId);
+    
+    if (!story) {
+      return res.status(404).json({ message: 'Story not found' });
+    }
+    
+    story.likes = (story.likes || 0) + 1;
+    writeDB(db);
+    
+    res.json({ likes: story.likes });
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating likes' });
+  }
+});
+
+app.put('/stories/:id', (req, res) => {
+  try {
+    const storyId = req.params.id;
+    const updates = req.body;
+    const db = readDB();
+    const story = db.stories.find(s => s.id === storyId);
+    
+    if (!story) {
+      return res.status(404).json({ message: 'Story not found' });
+    }
+    
+    Object.assign(story, updates);
+    writeDB(db);
+    
+    res.json(story);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating story' });
+  }
+});
+
 const PORT = 8080;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

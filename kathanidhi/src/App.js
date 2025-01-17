@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AuthProvider } from './context/AuthContext';
@@ -33,10 +33,10 @@ const theme = createTheme({
 
 function App() {
   return (
-    <Router>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AuthProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AuthProvider>
+        <BrowserRouter>
           <StoriesProvider>
             <div className="App" style={{ 
               minHeight: '100vh',
@@ -52,6 +52,7 @@ function App() {
                   <Route path="/stories" element={<Stories />} />
                   <Route path="/story/:id" element={<StoryDetail />} />
                   <Route path="/categories" element={<Categories />} />
+                  <Route path="/categories/:categoryId" element={<Categories />} />
                   <Route path="/chatbot" element={<ChatbotPage />} />
                   <Route path="/create" element={<CreateStory />} />
                   <Route path="/profile" element={<Profile />} />
@@ -60,9 +61,9 @@ function App() {
               <Footer />
             </div>
           </StoriesProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </Router>
+        </BrowserRouter>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

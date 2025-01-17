@@ -28,15 +28,15 @@ const CreateStory = () => {
 
       await createStory(storyData);
     } catch (error) {
-      console.error('Failed to create story:', error);
+      console.error('కథ సృష్టించడంలో విఫలమయ్యింది:', error);
       throw error;
     }
   };
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Create New Story
+      <Typography variant="h4" component="h1" gutterBottom sx={{ textAlign: 'center' }}>
+        కొత్త కథను సృష్టించండి
       </Typography>
       <CreateStoryForm onSubmit={handleCreateStory} />
     </Container>

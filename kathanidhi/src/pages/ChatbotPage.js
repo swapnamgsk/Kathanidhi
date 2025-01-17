@@ -18,7 +18,7 @@ const ChatbotPage = () => {
             gutterBottom
             align="center"
           >
-            AI Assistant
+            ఏఐ సహాయకుడు
           </Typography>
           <Typography
             variant="body1"
@@ -27,7 +27,7 @@ const ChatbotPage = () => {
             align="center"
             sx={{ mb: 4 }}
           >
-            Ask me anything about Telugu literature, stories, or help finding specific content!
+            తెలుగు సాహిత్యం, కథలు, లేదా నిర్దిష్ట విషయాలను కనుగొనడంలో సహాయం కోసం నన్ను ఏమైనా అడగండి!
           </Typography>
           <Chatbot />
         </Box>

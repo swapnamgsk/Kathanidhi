@@ -24,7 +24,7 @@ const Home = () => {
       {/* Hero Section */}
       <Box
         sx={{
-          bgcolor: 'primary.main',
+          bgcolor: '#1b5e20',
           color: 'white',
           py: { xs: 6, md: 12 },
           position: 'relative',
@@ -43,23 +43,28 @@ const Home = () => {
                   fontSize: { xs: '2.5rem', md: '3.5rem' }
                 }}
               >
-                Telugu Poets Hub
+                తెలుగు కవుల సమూహం
               </Typography>
               <Typography
                 variant="h5"
                 sx={{ mb: 4, opacity: 0.9 }}
               >
-                Discover, Create, and Share Telugu Literature
+                తెలుగు సాహిత్యాన్ని కనుగొనండి, సృష్టించండి మరియు పంచుకోండి
               </Typography>
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <Button
                   component={Link}
                   to="/stories"
                   variant="contained"
-                  color="secondary"
+                  sx={{
+                    bgcolor: '#4caf50',
+                    '&:hover': {
+                      bgcolor: '#43a047'
+                    }
+                  }}
                   size="large"
                 >
-                  Explore Stories
+                  కథలను అన్వేషించండి
                 </Button>
                 <Button
                   component={Link}
@@ -68,7 +73,7 @@ const Home = () => {
                   color="inherit"
                   size="large"
                 >
-                  Start Writing
+                  రచన ప్రారంభించండి
                 </Button>
               </Box>
             </Grid>
@@ -99,7 +104,10 @@ const Home = () => {
                   height: '100%',
                   backgroundColor: 'background.paper',
                   border: '1px solid',
-                  borderColor: 'divider'
+                  borderColor: 'divider',
+                  '& .MuiSvgIcon-root': {
+                    color: '#2e7d32'
+                  }
                 }}
               >
                 {feature.icon}
@@ -124,7 +132,7 @@ const Home = () => {
             gutterBottom
             sx={{ mb: 4 }}
           >
-            Latest Stories
+            తాజా కథలు
           </Typography>
           <Grid container spacing={3}>
             {latestStories.map((story) => (
@@ -141,7 +149,7 @@ const Home = () => {
               color="primary"
               size="large"
             >
-              View All Stories
+              అన్ని కథలను చూడండి
             </Button>
           </Box>
         </Container>
@@ -152,19 +160,19 @@ const Home = () => {
 
 const features = [
   {
-    icon: <AutoStoriesIcon sx={{ fontSize: 40, color: 'primary.main' }} />,
-    title: 'Rich Story Collection',
-    description: 'Explore a vast collection of Telugu stories, proverbs, and literature.'
+    icon: <AutoStoriesIcon sx={{ fontSize: 40, color: '#2e7d32' }} />,
+    title: 'ధనవంతమైన కథల సేకరణ',
+    description: 'తెలుగు కథలు, సామెతలు మరియు సాహిత్యంలోని విస్తారమైన సేకరణను అన్వేషించండి.'
   },
   {
-    icon: <AutoStoriesIcon sx={{ fontSize: 40, color: 'primary.main' }} />,
-    title: 'Create & Share',
-    description: 'Write and share your own stories with our growing community.'
+    icon: <AutoStoriesIcon sx={{ fontSize: 40, color: '#2e7d32' }} />,
+    title: 'సృష్టించండి & పంచుకోండి',
+    description: 'మీ కథలను రాయండి మరియు మా అభివృద్ధి చెందుతున్న కమ్యూనిటీలో పంచుకోండి.'
   },
   {
-    icon: <AutoStoriesIcon sx={{ fontSize: 40, color: 'primary.main' }} />,
-    title: 'Interactive Learning',
-    description: 'Engage with other writers and readers through comments and likes.'
+    icon: <AutoStoriesIcon sx={{ fontSize: 40, color: '#2e7d32' }} />,
+    title: 'ఇంటరాక్టివ్ లెర్నింగ్',
+    description: 'వ్యాఖ్యలు మరియు లైకుల ద్వారా ఇతర రచయితలు మరియు పాఠకులతో మమేకం అవ్వండి.'
   }
 ];
 

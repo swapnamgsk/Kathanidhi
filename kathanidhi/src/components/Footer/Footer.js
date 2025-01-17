@@ -18,25 +18,25 @@ const Footer = () => {
 
   const footerSections = {
     about: {
-      title: 'About Us',
-      description: 'Telugu Poets Hub is a platform dedicated to preserving and promoting Telugu literature through storytelling and community engagement.'
+      title: 'మా గురించి',
+      description: 'తెలుగు కవుల సమూహం తెలుగు సాహిత్యాన్ని కథల ద్వారా కాపాడడం మరియు ప్రోత్సహించడానికి, సమాజం మధ్యకారంగా పనిచేసే వేదిక.'
     },
     quickLinks: {
-      title: 'Quick Links',
+      title: 'త్వరిత లింకులు',
       links: [
-        { text: 'Stories', path: '/stories' },
-        { text: 'Categories', path: '/categories' },
-        { text: 'Write Story', path: '/create' },
-        { text: 'Chatbot', path: '/chatbot' }
+        { text: 'కథలు', path: '/stories' },
+        { text: 'వర్గాలు', path: '/categories' },
+        { text: 'కథ రాయండి', path: '/create' },
+        { text: 'చాట్‌బాట్', path: '/chatbot' }
       ]
     },
     categories: {
-      title: 'Categories',
+      title: 'వర్గాలు',
       links: [
-        { text: 'One-Page Stories', path: '/categories/one-page' },
-        { text: 'Proverbs', path: '/categories/proverbs' },
-        { text: 'Riddles', path: '/categories/riddles' },
-        { text: 'Wise Sayings', path: '/categories/wise-sayings' }
+        { text: 'తెలుగు జానపద కథలు', path: '/categories/telugu-folk-tales' },
+        { text: 'హరికిషన్ కథలు', path: '/categories/harikatha' },
+        { text: 'బాలల నీతి కథలు', path: '/categories/moral-stories' },
+        { text: 'చిట్టి కథలు', path: '/categories/short-stories' }
       ]
     }
   };
@@ -51,7 +51,7 @@ const Footer = () => {
     <Box
       component="footer"
       sx={{
-        bgcolor: 'primary.main',
+        bgcolor: '#1b5e20',
         color: 'white',
         py: 6,
         mt: 'auto'
@@ -78,7 +78,7 @@ const Footer = () => {
                   sx={{ 
                     color: 'white',
                     '&:hover': {
-                      color: theme.palette.secondary.main
+                      color: '#81c784'
                     }
                   }}
                 >
@@ -104,7 +104,7 @@ const Footer = () => {
                   textDecoration: 'none',
                   mb: 1,
                   '&:hover': {
-                    color: theme.palette.secondary.main
+                    color: '#81c784'
                   }
                 }}
               >
@@ -129,7 +129,7 @@ const Footer = () => {
                   textDecoration: 'none',
                   mb: 1,
                   '&:hover': {
-                    color: theme.palette.secondary.main
+                    color: '#81c784'
                   }
                 }}
               >
@@ -142,7 +142,7 @@ const Footer = () => {
         {/* Copyright Section */}
         <Box sx={{ mt: 5, pt: 3, borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
           <Typography variant="body2" align="center">
-            © {new Date().getFullYear()} Telugu Poets Hub. All rights reserved.
+            © {new Date().getFullYear()} తెలుగు కవుల సమూహం. హక్కులు అన్ని రిజర్వు చేయబడినవి.
           </Typography>
           <Typography variant="body2" align="center" sx={{ mt: 1 }}>
             <Link
@@ -153,11 +153,11 @@ const Footer = () => {
                 textDecoration: 'none',
                 mx: 1,
                 '&:hover': {
-                  color: theme.palette.secondary.main
+                  color: '#81c784'
                 }
               }}
             >
-              Privacy Policy
+              గోప్యతా విధానం
             </Link>
             |
             <Link
@@ -168,11 +168,11 @@ const Footer = () => {
                 textDecoration: 'none',
                 mx: 1,
                 '&:hover': {
-                  color: theme.palette.secondary.main
+                  color: '#81c784'
                 }
               }}
             >
-              Terms of Service
+              సేవా షరతులు
             </Link>
           </Typography>
         </Box>

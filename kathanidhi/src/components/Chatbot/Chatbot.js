@@ -1,24 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { 
-  Box, 
-  Paper, 
-  TextField, 
-  IconButton, 
-  CircularProgress
-} from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
+import { Box, Paper } from '@mui/material';
 import ChatMessage from './ChatMessage';
+import TransliterateInput from '../common/TransliterateInput';
+import { useStories } from '../../context/StoriesContext';
 
 const Chatbot = () => {
+  const { stories } = useStories();
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hello! I'm your Telugu literature assistant. How can I help you today?",
+      text: "నమస్తే! నేను మీ తెలుగు సాహిత్య సహాయకుడు. నేను మీకు ఎలా సహాయం చేయగలను?",
       sender: 'bot',
       timestamp: new Date()
     }
   ]);
-  const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
@@ -30,72 +25,103 @@ const Chatbot = () => {
     scrollToBottom();
   }, [messages]);
 
+  const findRelevantStories = (query) => {
+    const searchTerms = query.toLowerCase();
+    return stories.filter(story => {
+      const titleMatch = story.title.toLowerCase().includes(searchTerms);
+      const contentMatch = story.content.toLowerCase().includes(searchTerms);
+      const categoryMatch = story.category.toLowerCase().includes(searchTerms);
+      const tagsMatch = story.tags?.some(tag => tag.toLowerCase().includes(searchTerms));
+      return titleMatch || contentMatch || categoryMatch || tagsMatch;
+    });
+  };
+
+  const generateStoryIdea = (topic) => {
+    // Basic story structure template
+    return `ఇక్కడ "${topic}" గురించి ఒక కథ ఆలోచన:\n\n` +
+           `శీర్షిక: ${topic} సాహస యాత్ర\n\n` +
+           `ప్రారంభం:\n` +
+           `- పాత్రల పరిచయం\n` +
+           `- నేపథ్య వివరణ\n\n` +
+           `మధ్య భాగం:\n` +
+           `- ముఖ్య సంఘటన\n` +
+           `- సమస్య/సవాలు\n\n` +
+           `ముగింపు:\n` +
+           `- పరిష్కారం\n` +
+           `- నీతి\n\n` +
+           `మీరు ఈ ఆలోచనను అభివృద్ధి చేసి, కొత్త కథను సృష్టించవచ్చు.`;
+  };
+
   const processMessage = async (userMessage) => {
-    // This is where you would integrate with your backend API
-    // For now, we'll use some example responses
     setIsLoading(true);
     
     try {
-      // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
+      let botResponse = "";
 
-      let botResponse = "I'm processing your request...";
-
-      // Simple keyword-based responses
-      if (userMessage.toLowerCase().includes('mother') || 
-          userMessage.toLowerCase().includes('amma')) {
-        botResponse = "Here are some stories about mothers:\n\n" +
-          "1. 'A Mother's Love' (One-Page Stories)\n" +
-          "2. 'Amma's Wisdom' (Proverbs)\n" +
-          "3. 'Mother's Sacrifice' (Multi-Page Stories)";
-      } else if (userMessage.toLowerCase().includes('story')) {
-        botResponse = "Would you like to:\n\n" +
-          "1. Read a story\n" +
-          "2. Write a new story\n" +
-          "3. Search for specific stories\n\n" +
-          "Please let me know your preference!";
-      } else if (userMessage.toLowerCase().includes('proverb')) {
-        botResponse = "Here are some popular Telugu proverbs:\n\n" +
-          "1. తల్లి లేని బిడ్డ తండ్రి లేని బిడ్డ\n" +
-          "2. ఆకలి మంటకన్నా పెద్దమంట లేదు\n" +
-          "3. చదువు సంపద నశింపదు";
+      // Check if user is asking about stories
+      if (userMessage.toLowerCase().includes('కథ') || 
+          userMessage.toLowerCase().includes('story')) {
+        
+        // If asking to create a story
+        if (userMessage.toLowerCase().includes('కొత్త') || 
+            userMessage.toLowerCase().includes('రాయి') ||
+            userMessage.toLowerCase().includes('create')) {
+          const topic = userMessage.split('గురించి')[1]?.trim() || 
+                       userMessage.split('about')[1]?.trim() || 
+                       'సాధారణ';
+          botResponse = generateStoryIdea(topic);
+        } 
+        // If searching for existing stories
+        else {
+          const relevantStories = findRelevantStories(userMessage);
+          if (relevantStories.length > 0) {
+            botResponse = "సంబంధిత కథలు:\n\n" + 
+              relevantStories.map((story, index) => 
+                `${index + 1}. ${story.title}\n` +
+                `   వర్గం: ${story.category}\n` +
+                `   సారాంశం: ${story.excerpt || story.content.substring(0, 100)}...\n`
+              ).join('\n');
+          } else {
+            botResponse = "క్షమించండి, మీ ప్రశ్నకు సంబంధించిన కథలు కనుగొనలేకపోయాను. మీరు కొత్త కథను సృష్టించాలనుకుంటున్నారా?";
+          }
+        }
+      } else {
+        botResponse = "మీ ప్రశ్నను అర్థం చేసుకోలేకపోయాను. దయచేసి కథల గురించి అడగండి లేదా కొత్త కథను సృష్టించమని అడగండి.";
       }
 
-      setMessages(prev => [...prev, {
-        id: prev.length + 2,
+      const botMessage = {
+        id: Date.now(),
         text: botResponse,
         sender: 'bot',
         timestamp: new Date()
-      }]);
+      };
 
+      setMessages(prev => [...prev, botMessage]);
     } catch (error) {
-      setMessages(prev => [...prev, {
-        id: prev.length + 2,
-        text: "I'm sorry, I encountered an error. Please try again.",
+      console.error('Error processing message:', error);
+      const errorMessage = {
+        id: Date.now(),
+        text: "క్షమించండి, ఏదో తప్పు జరిగింది. దయచేసి మళ్ళీ ప్రయత్నించండి.",
         sender: 'bot',
-        timestamp: new Date(),
-        error: true
-      }]);
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleSend = async (e) => {
-    e.preventDefault();
-    
-    if (!inputMessage.trim()) return;
-
+  const handleSend = async (message) => {
     const userMessage = {
       id: messages.length + 1,
-      text: inputMessage,
+      text: message,
       sender: 'user',
       timestamp: new Date()
     };
 
     setMessages(prev => [...prev, userMessage]);
-    setInputMessage('');
-    await processMessage(inputMessage);
+    await processMessage(message);
   };
 
   return (
@@ -108,55 +134,20 @@ const Chatbot = () => {
         overflow: 'hidden'
       }}
     >
-      {/* Messages Area */}
       <Box 
         sx={{
           flex: 1,
           overflow: 'auto',
           p: 2,
-          backgroundColor: '#f5f5f5'
         }}
       >
         {messages.map((message) => (
           <ChatMessage key={message.id} message={message} />
         ))}
-        {isLoading && (
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-            <CircularProgress size={20} />
-          </Box>
-        )}
         <div ref={messagesEndRef} />
       </Box>
 
-      {/* Input Area */}
-      <Box
-        component="form"
-        onSubmit={handleSend}
-        sx={{
-          p: 2,
-          backgroundColor: 'white',
-          borderTop: '1px solid #e0e0e0',
-          display: 'flex',
-          gap: 1
-        }}
-      >
-        <TextField
-          fullWidth
-          variant="outlined"
-          placeholder="Type your message..."
-          value={inputMessage}
-          onChange={(e) => setInputMessage(e.target.value)}
-          size="small"
-          disabled={isLoading}
-        />
-        <IconButton 
-          type="submit" 
-          color="primary"
-          disabled={!inputMessage.trim() || isLoading}
-        >
-          <SendIcon />
-        </IconButton>
-      </Box>
+      <TransliterateInput onSend={handleSend} isLoading={isLoading} />
     </Paper>
   );
 };
